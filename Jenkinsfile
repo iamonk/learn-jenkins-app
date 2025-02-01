@@ -6,7 +6,6 @@ pipeline {
         /* 
         This is line comment
         */
-        /*
         stage('Build') {
             agent {
                 docker {
@@ -25,7 +24,6 @@ pipeline {
                 '''
             }
         }
-        */
         stage ('Tests'){
             parallel{
 
