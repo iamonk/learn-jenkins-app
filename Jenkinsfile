@@ -4,7 +4,6 @@ pipeline {
     environment {
         NETLIFY_SITE_ID = 'ffdf784b-3dc5-4036-9c1e-ebfd61eeccae'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
-        CI_ENVIRONMENT_URL = 'https://delightful-lebkuchen-9c0cf0.netlify.app'
     }
 
     stages {
@@ -53,27 +52,27 @@ pipeline {
                     }
                 }
 
-                // stage('E2E'){
-                //     agent {
-                //         docker {
-                //             image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
-                //             reuseNode true
-                //         }
-                //     }
-                //     steps{
-                //         sh ''' 
-                //             npm install serve
-                //             node_modules/.bin/serve -s build &
-                //             npx playwright test --reporter=html
-                //         '''
-                //     }
+                stage('E2E'){
+                    agent {
+                        docker {
+                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            reuseNode true
+                        }
+                    }
+                    steps{
+                        sh ''' 
+                            npm install serve
+                            node_modules/.bin/serve -s build &
+                            npx playwright test --reporter=html
+                        '''
+                    }
 
-                //     post {
-                //         always {
-                //             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Local Report', reportTitles: '', useWrapperFileDirectly: true])
-                //         }
-                //     }
-                // }
+                    post {
+                        always {
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Local Report', reportTitles: '', useWrapperFileDirectly: true])
+                        }
+                    }
+                }
             }
         }
 
