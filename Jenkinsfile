@@ -9,12 +9,6 @@ pipeline {
 
     stages {
 
-        stage ('Docker'){
-            steps{
-                sh 'docker build -t my-playwright .'
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -117,7 +111,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://delightful-lebkuchen-9c0cf0.netlify.app'
+                CI_ENVIRONMENT_URL = 'https://marvelous-cupcake-956f31.netlify.app'
                 }
 
             steps {
