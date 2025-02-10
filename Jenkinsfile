@@ -110,7 +110,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://marvelous-cupcake-956f31.netlify.app'
+                CI_ENVIRONMENT_URL = 'https://monumental-rabanadas-1ae60e.netlify.app/'
                 }
 
             steps {
